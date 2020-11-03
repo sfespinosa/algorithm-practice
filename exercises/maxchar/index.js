@@ -23,7 +23,6 @@ function maxChar(str) {
             maxKey = key
         }
     })
-    
     return maxKey
 }
 
