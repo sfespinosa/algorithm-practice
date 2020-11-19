@@ -14,6 +14,21 @@
 //       ' ### '
 //       '#####'
 
-function pyramid(n) {}
+function pyramid(n) {
+    let length = n * 2 -1
+    let stringArr = []
+    while (stringArr.length !== length) {
+        stringArr.push(' ')
+    }
+    let midpoint = n - 1
+    let step = 1
+    stringArr[midpoint] = '#'
+    while (step <= n) {
+        console.log(stringArr.join(''))
+        stringArr[midpoint + step] = '#'
+        stringArr[midpoint - step] = '#'
+        step++
+    }
+}
 
 module.exports = pyramid;
