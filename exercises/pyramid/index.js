@@ -14,21 +14,46 @@
 //       ' ### '
 //       '#####'
 
-function pyramid(n) {
-    let length = n * 2 -1
-    let stringArr = []
-    while (stringArr.length !== length) {
-        stringArr.push(' ')
-    }
+// with recursion
+function pyramid(n, row = 0, column = 0, level = '') {
     let midpoint = n - 1
-    let step = 1
-    stringArr[midpoint] = '#'
-    while (step <= n) {
-        console.log(stringArr.join(''))
-        stringArr[midpoint + step] = '#'
-        stringArr[midpoint - step] = '#'
-        step++
+    let length = n * 2 - 1
+    if (n === row) {
+        return
     }
+
+    if (length === level.length) {
+        console.log(level)
+        level = ''
+        column = 0
+        row++
+    } else if (column < midpoint-row || column > midpoint + row){ 
+        level+= ' '
+        column++
+    } else {
+        level += '#'
+        column++
+    }
+
+    pyramid(n, row, column, level)
 }
+
+// function pyramid(n) {
+//     my solution
+//     let length = n * 2 -1
+//     let stringArr = []
+//     while (stringArr.length !== length) {
+//         stringArr.push(' ')
+//     }
+//     let midpoint = n - 1
+//     let step = 1
+//     stringArr[midpoint] = '#'
+//     while (step <= n) {
+//         console.log(stringArr.join(''))
+//         stringArr[midpoint + step] = '#'
+//         stringArr[midpoint - step] = '#'
+//         step++
+//     }
+// }
 
 module.exports = pyramid;
