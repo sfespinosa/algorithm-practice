@@ -8,22 +8,58 @@
 // Example:
 //   fib(4) === 3
 
-function fib(n) {
+// function fib(n) {
   // my solution
-  if (n === 1) return 1
-  if (n === 2) return 1
-  let count = 2
-  let prev = 1
-  let current = 1
-  while (count !== n) {
-    count++
-    let next = prev + current
-    prev = current
-    current = next
-  }
-  return current
+  // if (n < 2) return n
+  // let count = 2
+  // let prev = 1
+  // let current = 1
+  // while (count !== n) {
+  //   count++
+  //   let next = prev + current
+  //   prev = current
+  //   current = next
+  // }
+  // return current
 
   // iterative solution
-}
+  // const results = [0, 1]
+
+  // for (let i = 2; i <= n; i++) {
+  //   results.push(results[i-2] + results[i-1])
+  // }
+
+  // return results[n]
+
+  // recursive solution
+  // if (n < 2) {
+  //   return n
+  // }
+
+  // return fib(n - 1) + fib(n - 2)
+// }
+
+function memoize(fn) {
+  const cache = {};
+  return function(...args) {
+    if (cache[args]) {
+      return cache[args];
+    }
+
+    const result = fn.apply(this, args)
+    cache[args] = result
+    return result
+  };
+};
+
+function fib(n) {
+  if (n < 2) {
+    return n;
+  };
+
+  return fib(n - 1) + fib(n - 2);
+};
+
+fib = memoize(fib);
 
 module.exports = fib;
